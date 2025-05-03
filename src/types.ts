@@ -1,27 +1,31 @@
-export type BreathingPhase = 'inhale' | 'hold' | 'exhale' | 'idle';
-
-export interface BreathingTimerState {
-  isActive: boolean;
-  phase: BreathingPhase;
-  phaseTimeRemaining: number;
-  sessionDuration: number; // in minutes
-  sessionTimeRemaining: number; // in seconds
-  cycleCount: number;
+export interface Food {
+  id: string;
+  name: string;
+  description: string;
+  type: 'breakfast' | 'lunch' | 'dinner' | 'snack';
+  cuisine: string;
+  dietary?: 'vegetarian' | 'vegan' | 'gluten-free' | null;
+  complexity: 'easy' | 'medium' | 'hard';
+  imageUrl?: string;
 }
 
-export interface BreathingCircleProps {
-  phase: BreathingPhase;
-  timeRemaining: number;
-}
+export interface Filters {
+  mealType: string;
+  dietary: string;
+  cuisine: string;
+  complexity: string;
+} 
 
-export interface ControlPanelProps {
-  isActive: boolean;
-  sessionDuration: number;
-  onToggle: () => void;
-  onDurationChange: (duration: number) => void;
-}
+export type HeaderProps = {
+    onReset: () => void;
+};
+export type Checkpoint = {
+    id: number;
+    name: string;
+    pingedAt: string | null;
+};
 
-export interface ProgressInfoProps {
-  cycleCount: number;
-  timeRemaining: number;
-}
+export type CheckpointCardProps = {
+    checkpoint: Checkpoint;
+    onPing: (id: number) => void;
+  };
